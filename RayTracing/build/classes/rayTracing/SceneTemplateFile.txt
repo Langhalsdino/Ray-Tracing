@@ -1,0 +1,79 @@
+/*
+ * This file is part of Langhalsdinos Ray Tracing.
+ * Langhalsdinos Ray Tracing is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Langhalsdinos Ray Tracing is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Langhalsdinos Ray Tracing. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Template File contains a simple scene :)
+// Feel free to write your own file
+
+<RayTracingScene>
+    <backgroundColor>
+        0,0,0
+    </backgroundColor>
+    <sphere>
+        <color>
+            255,255,255
+        </color>
+        <radius>
+            70.0
+        </radius>
+        <reflective>
+            0.65
+        </reflective>
+        <postion>
+            -600.0,100.0,30.0
+        </postion>
+    </sphere>
+    <plane>
+        <color>
+            0,0,255
+        </color>
+        <pointInPlane>
+            -600.0,100.0,0.0
+        </pointInPlane>
+        <normalVector>
+            0.0,1.0,0.0
+        </normalVector>
+        <texture>
+            images/left_wall.jpg
+            <scale>
+                0.05
+            </scale>
+        </texture>
+    </plane>
+    <camera>
+        <image>
+            <size>
+                1250,1250
+            </size>
+            <path>
+                "finalImage.png"
+            </path>
+        </image>
+        <magnification>
+            0.15
+        </magnification>
+        <pointOfView>
+            <eye>
+                -146.45,-353.55,0.0
+            </eye>
+            <sceenDistance>
+                -353.55,353.55,0.0
+            </sceenDistance>
+            <viewUp>
+                -1.0,1.0,2.0
+            </viewUp>
+        </pointOfView>
+    </camera>
+</RayTracingScene>
