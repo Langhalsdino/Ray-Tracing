@@ -35,7 +35,7 @@ public class Sphere {
      * @param color         color of the sphere {R,G,B}
      * @param reflectiones  reflectiones of the sphere -> 1.0 = 100% reflection
      */
-    public Sphere(Vector3D c, double r, int[] color, double reflectiones){
+    public Sphere(Vector3D c, double r, int[] color, double reflectiones) {
         // Set vars
         center = c;
         radius = r;
@@ -48,7 +48,7 @@ public class Sphere {
      * 
      * @return the color of the sphere {R,G,B}
      */
-    public int[] getColor(){
+    public int[] getColor() {
         return colorRGB;
     }
     
@@ -57,7 +57,7 @@ public class Sphere {
      * 
      * @return the reflectiones of the sphere -> 1.0 = 100%
      */
-    public double getReflectionIndex(){
+    public double getReflectionIndex() {
         return reflection;
     }
     
@@ -67,7 +67,7 @@ public class Sphere {
      * @param pointOnSurface    Point on the surface at which you need the surface normal
      * @return                  Surface normal
      */
-    public Vector3D getSurfaceNormal(Vector3D pointOnSurface){
+    public Vector3D getSurfaceNormal(Vector3D pointOnSurface) {
         Vector3D normal = Vector3D.subtract(pointOnSurface, center);
         return normal;
     }
@@ -78,7 +78,7 @@ public class Sphere {
      * @param light ray to calculate intersection
      * @return      return distance to intersection in ray units
      */
-    public double intersectionPointOfRay(Ray light){
+    public double intersectionPointOfRay(Ray light) {
         double intersection = calcIntersection(light);
 
         // return distance to intersection
@@ -91,7 +91,7 @@ public class Sphere {
      * @param light ray to calculate intersection
      * @return      return distance to intersection in ray units
      */
-    private double calcIntersection(Ray light){
+    private double calcIntersection(Ray light) {
         double intersectionT = 0.0;
         
         // Calculate a,b,c from a*t^2+b*t+c
@@ -102,7 +102,7 @@ public class Sphere {
         // The discriminant describes the amount of solutions
         double  discriminant = b*b - 4.0*a*c;
         
-        if(discriminant > 0.0 ){
+        if (discriminant > 0.0 ) {
             // Two solutions, find smallest solution that is > 1
             double firstT = 0.0;
             double secondT = 0.0;
@@ -113,21 +113,21 @@ public class Sphere {
             // calc second solution
             secondT = (-b - Math.sqrt(discriminant)) / (2.0*a);
            
-            if(firstT < secondT){
+            if (firstT < secondT) {
                 intersectionT = firstT;
             }
             
-            else{
+            else {
                 intersectionT = secondT;
             }
         }
         
-        if(discriminant == 0.0){
+        if (discriminant == 0.0) {
             // Tangent one point of intersection
             intersectionT = -b / 2.0 * a;
         }
         
-        if(discriminant < 0.0){
+        if (discriminant < 0.0) {
             // no solution!! :)
         }
         return intersectionT;

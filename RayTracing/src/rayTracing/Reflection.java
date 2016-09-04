@@ -35,7 +35,7 @@ public class Reflection {
      * @param originalRay           ray that should be reflected
      * @param pointOfIntersection   point at whicht the ray should be reflected
      */
-    public Reflection(Vector3D normal, Ray originalRay, Vector3D pointOfIntersection){
+    public Reflection(Vector3D normal, Ray originalRay, Vector3D pointOfIntersection) {
         n = normal;
         ray = originalRay;
         point = pointOfIntersection;
@@ -45,7 +45,7 @@ public class Reflection {
     /**
      * Actually calculates the reflected ray
      */
-    private void calcReflectionVector(){
+    private void calcReflectionVector() {
         // calculate the new reflectionVector
         
         double factor = 2 * Vector3D.dot(ray.getDirection(), n);
@@ -60,7 +60,7 @@ public class Reflection {
      * 
      * @return reflected Ray
      */
-    public Ray getRefelctedRay(){
+    public Ray getRefelctedRay() {
         return reflectedRay;
     }
 }

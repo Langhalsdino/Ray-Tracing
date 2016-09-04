@@ -41,7 +41,7 @@ public class Plane {
      * @param color         color of the plane
      * @param reflection    reflectiones of the plane -> 1.0 = 100%
      */
-    public Plane(Vector3D normalVector, Vector3D pointInPlane, int[] color, double reflection){
+    public Plane(Vector3D normalVector, Vector3D pointInPlane, int[] color, double reflection) {
         normal = normalVector;
         normal.normalize();
         zeroPoint = pointInPlane;
@@ -62,7 +62,7 @@ public class Plane {
      * @param magnification magnification of the image
      * @param imag          image (texture)
      */
-    public Plane(Vector3D normalVector, Vector3D pointInPlane, int[] color, double reflection,  Vector3D rot, double magnification, BufferedImage imag){
+    public Plane(Vector3D normalVector, Vector3D pointInPlane, int[] color, double reflection,  Vector3D rot, double magnification, BufferedImage imag) {
         normal = normalVector;
         normal.normalize();
         zeroPoint = pointInPlane;
@@ -85,7 +85,7 @@ public class Plane {
      * @param magnification magnification of the function
      * @param function      function that should become the texture
      */
-    public Plane(Vector3D normalVector, Vector3D pointInPlane, int[] color, double reflection, Vector3D rot, double magnification, ColorFunction function){
+    public Plane(Vector3D normalVector, Vector3D pointInPlane, int[] color, double reflection, Vector3D rot, double magnification, ColorFunction function) {
         // Set vars
         normal = normalVector;
         normal.normalize();
@@ -104,7 +104,7 @@ public class Plane {
      * @param pointInPlane  vector that discribes point in plane 
      * @return              distance
      */
-    private double calcDistance(Vector3D pointInPlane){
+    private double calcDistance(Vector3D pointInPlane) {
         double distance;
         
         // get the distance of a plane with a given surface normal and pointInPlane
@@ -120,7 +120,7 @@ public class Plane {
      * @param light ray that should intersect the plane
      * @return      return distance to intersection in ray units
      */
-    public double intersectionPointOfRay(Ray light){
+    public double intersectionPointOfRay(Ray light) {
         double intersection = calcIntersection(light);
         //return distance of the point ofintersection in ray units
         return intersection;
@@ -131,7 +131,7 @@ public class Plane {
      * 
      * @return  the color of the plane {R,G,B}
      */
-    public int[] getColor(){
+    public int[] getColor() {
         return colorRGB;
     }
     
@@ -141,7 +141,7 @@ public class Plane {
      * @param point point on the sphere
      * @return      color of the point in {R,G,B}
      */
-    public int[] getColor(Vector3D point){
+    public int[] getColor(Vector3D point) {
         int[] color = textur.colorOfPoint(point, this);
         return color;
     }
@@ -151,7 +151,7 @@ public class Plane {
      * 
      * @return reflectivness of the plane -> 1.0 = 100%
      */
-    public double getReflectionIndex(){
+    public double getReflectionIndex() {
         return reflectionIndex;
     }
     
@@ -160,7 +160,7 @@ public class Plane {
      * 
      * @return  surface normal of the plane
      */
-    public Vector3D getSurfaceNormal(){
+    public Vector3D getSurfaceNormal() {
         return normal;
     }
     
@@ -169,7 +169,7 @@ public class Plane {
      * 
      * @return  returns the origin on the plane as vector
      */
-    public Vector3D getZeroPoint(){
+    public Vector3D getZeroPoint() {
         return zeroPoint;
     }
     
@@ -178,7 +178,7 @@ public class Plane {
      * 
      * @return magnification of texture
      */
-    public double getMagnification(){
+    public double getMagnification() {
         return scale;
     }
     
@@ -187,7 +187,7 @@ public class Plane {
      * 
      * @return texture of plane
      */
-    public Texture getTexture(){
+    public Texture getTexture() {
         return textur;
     }
     
@@ -196,7 +196,7 @@ public class Plane {
      * 
      * @return true if plane has a textrure
      */
-    public boolean hasTexture(){
+    public boolean hasTexture() {
         return boolTexture;
     }
     
@@ -206,16 +206,16 @@ public class Plane {
      * @param light ray that should intersect the plane
      * @return      return distance to intersection in ray units
      */
-    private double calcIntersection(Ray light){
+    private double calcIntersection(Ray light) {
         double intersection = 0;
         
         double a = Vector3D.dot(light.getDirection(), normal) ;
         double b = Vector3D.dot(light.getOrigin(), normal);
         
-        if(a!=0){
+        if (a!=0) {
             intersection = (d - b) / a;
         }
-        else{
+        else {
             // no solution, light ray ist parallel to plane
         }
         return intersection;

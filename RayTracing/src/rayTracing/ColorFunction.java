@@ -32,7 +32,7 @@ public class ColorFunction {
      * Creates a ColorFunction class with a certain function type -> defined by there name
      * @param   name    The name of the function 
      */
-    public ColorFunction(String name){
+    public ColorFunction(String name) {
         functionName = name;
     }
     
@@ -43,12 +43,12 @@ public class ColorFunction {
      * @param   y   y coordinate of the point
      * @return      returns a array of integers as the RGB color of the point
      */
-    public int[] getRGB(int x, int y){
+    public int[] getRGB(int x, int y) {
         // if no function type exists, is the point black
         int[] color = {255,255,255};
         
         // If the function type is chess the function will get the color from a chess pattern
-        if(functionName == "chess"){
+        if (functionName == "chess") {
             // get modulus of coordinates with respect to the modulus (2)
             x = Math.abs(x+100)%2;
             y = Math.abs(y+100)%2;
@@ -56,14 +56,14 @@ public class ColorFunction {
             y = y * y;
             
             // White tile if x == y
-            if(x == y){
+            if (x == y) {
                 color[0] = 0;
                 color[1] = 0;
                 color[2] = 0;
             }
             
             // Otherwise return black, since it is a black tile
-            else{
+            else {
                 color[0] = 255;
                 color[1] = 255;
                 color[2] = 255;

@@ -39,9 +39,9 @@ public class Scene3D {
      * @param color             color of the sphere {R,G,B}
      * @param reflectionIndex   reflectivness of the sphere -> 1.0 -> 100%
      */
-    public void addObject(Vector3D c, double r, int[] color, double reflectionIndex){
+    public void addObject(Vector3D c, double r, int[] color, double reflectionIndex) {
         // add a new sphere to the list spheres
-        if(reflectionIndex > 1.0){
+        if (reflectionIndex > 1.0) {
             reflectionIndex = 1.0;
         }
         Sphere sphere = new Sphere(c, r, color, reflectionIndex);
@@ -56,9 +56,9 @@ public class Scene3D {
      * @param color             color of the plane {R,G,B}
      * @param reflectionIndex   reflectivness of the plane -> 1.0 = 100%
      */
-    public void addObject(Vector3D normal, Vector3D distance, int[] color, double reflectionIndex){
+    public void addObject(Vector3D normal, Vector3D distance, int[] color, double reflectionIndex) {
         // add a new plane to the list planes
-        if(reflectionIndex > 1.0){
+        if (reflectionIndex > 1.0) {
             reflectionIndex = 1.0;
         }
         Plane plane = new Plane(normal, distance, color, reflectionIndex);
@@ -76,9 +76,9 @@ public class Scene3D {
      * @param magnification     magnification of the texture
      * @param image             image as texture
      */
-    public void addObject(Vector3D normal, Vector3D distance, int[] color, double reflectionIndex, Vector3D rot, double magnification, BufferedImage image){
+    public void addObject(Vector3D normal, Vector3D distance, int[] color, double reflectionIndex, Vector3D rot, double magnification, BufferedImage image) {
         // add a new plane to the list planes
-        if(reflectionIndex > 1.0){
+        if (reflectionIndex > 1.0) {
             reflectionIndex = 1.0;
         }
         Plane plane = new Plane(normal, distance, color, reflectionIndex, rot, magnification, image);
@@ -96,9 +96,9 @@ public class Scene3D {
      * @param magnification     magnification of the texture
      * @param function          function as texture
      */
-    public void addObject(Vector3D normal, Vector3D distance, int[] color, double reflectionIndex, Vector3D rot, double magnification, ColorFunction function){
+    public void addObject(Vector3D normal, Vector3D distance, int[] color, double reflectionIndex, Vector3D rot, double magnification, ColorFunction function) {
         // add a new plane to the list planes
-        if(reflectionIndex > 1.0){
+        if (reflectionIndex > 1.0) {
             reflectionIndex = 1.0;
         }
         Plane plane = new Plane(normal, distance, color, reflectionIndex, rot, magnification, function);
@@ -110,7 +110,7 @@ public class Scene3D {
      * 
      * @param newBackgroundColor new background color {R,G,b}
      */
-    public void setBackgroundColor(int[] newBackgroundColor){
+    public void setBackgroundColor(int[] newBackgroundColor) {
         backgroundColor = newBackgroundColor;
     }
     
@@ -119,7 +119,7 @@ public class Scene3D {
      * 
      * @return list of spheres
      */
-    public List getSpheres(){
+    public List getSpheres() {
         // returns the list of spheres
         return Spheres;
     }
@@ -129,7 +129,7 @@ public class Scene3D {
      * 
      * @return list of planes
      */
-    public List getPlanes(){
+    public List getPlanes() {
         // returns the list of planes
         return Planes;
     }
@@ -139,7 +139,7 @@ public class Scene3D {
      * 
      * @return list of textures
      */
-    public List getTextures(){
+    public List getTextures() {
         return Textures;
     }
     
@@ -148,7 +148,7 @@ public class Scene3D {
      * 
      * @return backgound color {R,G,B}
      */
-    public int[] getBackgroundColor(){
+    public int[] getBackgroundColor() {
         return backgroundColor;
     }
 }

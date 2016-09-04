@@ -29,7 +29,7 @@ public class GetColor {
     *   @param  camera  Set the camera that has the pixel
     *   @param  scene3D Set the scene in order to get the objects in the scene
     */
-    public GetColor(int x, int y, Camera camera, Scene3D scene3D){
+    public GetColor(int x, int y, Camera camera, Scene3D scene3D) {
         backColor = scene3D.getBackgroundColor();
         scene = scene3D;
         ray = camera.calcRay(x, y);
@@ -46,16 +46,16 @@ public class GetColor {
     *   @param limit    Limit defines the minimal distance that each object has to be in order to see it. Integer as amounts of Ray vectors.
     *   @return         Return the pixels color as an in array {R,G,B}
     */
-    public int[] getColor(int depth, int limit){
+    public int[] getColor(int depth, int limit) {
         // Some preperations 
         intersection = 0;
         newIntersection = -1;
         int[] color = backColor;
         
         // Look for the first object hit, by calculate the distance to each Object
-        for(int i = 0; i < objects; i++){
+        for (int i = 0; i < objects; i++) {
             // Look first for the planes
-            if(i < planes){
+            if (i < planes) {
                 // Get the intersection with the current plane
                 Plane plane = (Plane) scene.getPlanes().get(i);
                 newIntersection = plane.intersectionPointOfRay(ray);
@@ -65,10 +65,10 @@ public class GetColor {
                 *   Or
                 *   The new intersection is closer to the limit but still bigger than the limit
                 */
-                if((intersection == 0 && newIntersection > limit) || (intersection > newIntersection && newIntersection > limit)){
+                if ((intersection == 0 && newIntersection > limit) || (intersection > newIntersection && newIntersection > limit)) {
                     
                     // If the plane is reflectiv at all and the depth of regressions has not reached the max
-                    if(plane.getReflectionIndex() > 0.0 && depth < 10){
+                    if (plane.getReflectionIndex() > 0.0 && depth < 10) {
                         
                         // Calculate the reflection ray, therefore get the vectror of intersection at first.
                         Vector3D pointOfIntersction = Vector3D.add
@@ -79,18 +79,18 @@ public class GetColor {
                         
                         // If the ray is at least 100% refelctive, get the color of the reflectiv ray,
                         // by searching for the closest hit object
-                        if(plane.getReflectionIndex() > 1.0){
+                        if (plane.getReflectionIndex() > 1.0) {
                             color = getColor(depth++, 0);
                         }
                         // Otherewise mix the color according to the refelction index 
-                        else{
+                        else {
                             
                             // If plane has a texture
-                            if(plane.hasTexture()){
+                            if (plane.hasTexture()) {
                                 color = plane.getColor(pointOfIntersction);
                             }
                             // If the plane has no texture get the color of the plane
-                            else{
+                            else {
                                 color = plane.getColor();
                             }
                             //Mix the color
@@ -101,15 +101,15 @@ public class GetColor {
                     }
                     
                     // If the plane is not reflectiv
-                    else{
+                    else {
                         // If plane has a texture
-                        if(plane.hasTexture()){
+                        if (plane.hasTexture()) {
                             // Get Point of intersection and ask vor color at the point of intersection
                             Vector3D pointOfIntersction = Vector3D.add
                                 (ray.getOrigin(), Vector3D.scale(newIntersection, ray.getDirection()));
                             color = plane.getColor(pointOfIntersction);
                         }
-                        else{
+                        else {
                             // Get color of the plane
                             color = plane.getColor();
                         }
@@ -121,7 +121,7 @@ public class GetColor {
             }
             
             // After last plane choosen try the spheres 
-            else{
+            else {
                 // Get the intersection with the current sphere
                 Sphere sphere;
                 sphere = (Sphere) scene.getSpheres().get(i-planes);
@@ -132,10 +132,10 @@ public class GetColor {
                 *   Or
                 *   The new intersection is closer to the limit but still bigger than the limit
                 */
-                if((intersection == 0 && newIntersection > limit) || (intersection > newIntersection && newIntersection > limit)){
+                if ((intersection == 0 && newIntersection > limit) || (intersection > newIntersection && newIntersection > limit)) {
                     
                     // If the sphere is reflectiv at all and the depth of regressions has not reached the max
-                    if(sphere.getReflectionIndex() > 0.0 && depth < 10){
+                    if (sphere.getReflectionIndex() > 0.0 && depth < 10) {
                         
                         // Calculate the reflection ray, therefore get the vectror of intersection at first.
                         Vector3D pointOfIntersction = Vector3D.add
@@ -146,11 +146,11 @@ public class GetColor {
                         
                         // If the ray is at least 100% refelctive, get the color of the reflectiv ray,
                         // by searching for the closest hit object
-                        if(sphere.getReflectionIndex() > 1.0){
+                        if (sphere.getReflectionIndex() > 1.0) {
                             color = getColor(depth++, 0);
                         }
                         // Otherwise mix the color according to the reflection index
-                        else{
+                        else {
                             color = getColor(depth++, 0);
                             color[0] = (int) (color[0] * sphere.getReflectionIndex() + scene.getBackgroundColor()[0] * (1 - sphere.getReflectionIndex()));
                             color[1] = (int) (color[1] * sphere.getReflectionIndex() + scene.getBackgroundColor()[1] * (1 - sphere.getReflectionIndex()));
@@ -158,7 +158,7 @@ public class GetColor {
                         }
                     }
                     // If the Sphere is not reflectiv get the color of the sphere
-                    else{
+                    else {
                         color = sphere.getColor();
                     }
                     

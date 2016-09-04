@@ -41,7 +41,7 @@ public class RayTracing {
      * @param height    height of the image
      * @return          returns emty image
      */
-    private BufferedImage createImage(int width,int height){
+    private BufferedImage createImage(int width,int height) {
         // Create BufferedImage
         BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
         return image;
@@ -53,7 +53,7 @@ public class RayTracing {
      * @param image buffered image
      * @return      writable raster from image
      */
-    private WritableRaster createRaster(BufferedImage image){
+    private WritableRaster createRaster(BufferedImage image) {
         // creat writable raster from BufferdImage
         WritableRaster raster = image.getRaster();
         return raster;
@@ -64,7 +64,7 @@ public class RayTracing {
      * 
      * @return returns path of the desktop
      */
-    private String getPathDesktop(){
+    private String getPathDesktop() {
         //get Paht of the users home directory
         String userHomeFolder = System.getProperty("user.home");
         return userHomeFolder;
@@ -76,12 +76,12 @@ public class RayTracing {
      * @param image     buffered image to save
      * @param location  path to the new image
      */
-    private void saveImage(BufferedImage image, String location){
+    private void saveImage(BufferedImage image, String location) {
         // try to save BufferdImage at location
-        try{
+        try {
             ImageIO.write(image,"PNG",new File(location + "/rayTracingImage_multi_Thread.png"));
         }
-        catch(IOException ioe){
+        catch (IOException ioe) {
             System.out.println("Could not save file");
         }
     }
@@ -190,26 +190,26 @@ public class RayTracing {
         BlockingQueue qFinal = new ArrayBlockingQueue(width * height);      
         
         //Create Pixels for the image and put them into the Blocking Queue
-        for(int w = 0; w < width; w++){
-            for(int h = 0; h < height; h++){
+        for (int w = 0; w < width; w++) {
+            for (int h = 0; h < height; h++) {
                 Pixel currentPixel = new Pixel(w, h, scene.getBackgroundColor());
                 qTask.put(currentPixel);
             }
         }
         
         // creates and starts the new threads
-        for(int threadCount = 0; threadCount < maxThreads; threadCount++){
+        for (int threadCount = 0; threadCount < maxThreads; threadCount++) {
             RenderThread renderThread = new RenderThread(qTask, qFinal, camera, scene);
             new Thread((Runnable) renderThread).start();
         }
         
         // wait threads to finish
-        while(!qTask.isEmpty() && !(qFinal.size()>= height * width)){
+        while(!qTask.isEmpty() && !(qFinal.size()>= height * width)) {
             // wait render threads to finish
         }
         
         // create new image
-        while(!qFinal.isEmpty()){
+        while(!qFinal.isEmpty()) {
             Pixel currentPixel = (Pixel) qFinal.take();
             raster.setPixel(currentPixel.getPosX(), currentPixel.getPosY(), currentPixel.getRGB());
         }

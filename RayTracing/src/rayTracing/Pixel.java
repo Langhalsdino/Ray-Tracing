@@ -36,7 +36,7 @@ public class Pixel {
      * @param   posY        position in Y-dimension
      * @param   colorRGB    color {R,G,B}
      */
-    public Pixel(int posX, int posY, int[] colorRGB){
+    public Pixel(int posX, int posY, int[] colorRGB) {
         xPos = posX;
         yPos = posY;
         color = colorRGB;
@@ -48,7 +48,7 @@ public class Pixel {
      * 
      * @return  return position in X-dimension
      */
-    public int getPosX(){
+    public int getPosX() {
         return xPos;
     }
     
@@ -57,7 +57,7 @@ public class Pixel {
      * 
      * @return  return position in Y-dimension
      */
-    public int getPosY(){
+    public int getPosY() {
         return yPos;
     }
     
@@ -66,7 +66,7 @@ public class Pixel {
      * 
      * @return  the color of the pixel
      */
-    public int[] getRGB(){
+    public int[] getRGB() {
         return color;
     }
     
@@ -75,7 +75,7 @@ public class Pixel {
      * 
      * @param newRGBcolor   color in {R,G,B}
      */
-    public void setRGB(int[] newRGBcolor){
+    public void setRGB(int[] newRGBcolor) {
         color = newRGBcolor;
         hasNull = false;
     }
@@ -85,11 +85,11 @@ public class Pixel {
      * 
      * @return Color as javafx.scene.paint.Color;
      */
-    public Color getColor(){
-        if(color.length == 3){
+    public Color getColor() {
+        if (color.length == 3) {
             return Color.rgb(color[0], color[1], color[2]);
         }
-        else{
+        else {
             return Color.BLACK;
         }
     }
@@ -99,7 +99,7 @@ public class Pixel {
      * 
      * @return if proccessed return false
      */
-    public boolean isNull(){
+    public boolean isNull() {
         return hasNull;
     }
 }

@@ -51,7 +51,7 @@ public class RenderThread implements Runnable {
      * @param pixelToRender pixel it should render
      * @return              rendered pixel
      */
-    private Pixel renderPixel(Pixel pixelToRender){
+    private Pixel renderPixel(Pixel pixelToRender) {
         Pixel pixel = pixelToRender;
         GetColor calcColor = new GetColor(pixel.getPosX(), pixel.getPosY(), currentCamera, currentScene);
         pixel.setRGB(calcColor.getColor(0, 1));

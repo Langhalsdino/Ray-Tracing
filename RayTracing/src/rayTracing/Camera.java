@@ -50,7 +50,7 @@ public class Camera {
      * @param   xLenght The max lenght in the X dimension of the screen in coordinate units 
      * @param   yLenght The max lenght in the Y dimension of the screen in coordinate units 
      */
-    public Camera(Vector3D eye, Vector3D dis, Vector3D up, int maxX, int maxY, double xLenght, double yLenght){
+    public Camera(Vector3D eye, Vector3D dis, Vector3D up, int maxX, int maxY, double xLenght, double yLenght) {
         // Define private vars
         origin = eye;
         distance = dis;
@@ -76,11 +76,11 @@ public class Camera {
      * @param pixelY    Y Pixel through which the ray goes
      * @return          The Ray that goes through the camera and pixel x&y
      */
-    public Ray calcRay(int pixelX, int pixelY){
+    public Ray calcRay(int pixelX, int pixelY) {
         Vector3D direction = new Vector3D();
         
         // if pixel is on the screen
-        if(pixelX < nx && pixelY < ny){
+        if (pixelX < nx && pixelY < ny) {
             // The d,v,w coordinates represents the direction vector
             double d = distance.length();
             double v;
@@ -95,7 +95,7 @@ public class Camera {
                                      Vector3D.add(Vector3D.scale(v,vectorV), 
                                      Vector3D.scale(w, vectorW)));
         }
-        else{
+        else {
             // Otherwise is the pixel not on the screen
             System.out.println("ERROR, pixel is out of bound!!");
             System.out.println("X,Y: " + pixelX + ", " + pixelY);   
@@ -111,7 +111,7 @@ public class Camera {
      *  Defines the camera coordinate System (origin at the eye)
      *  containing the vectors U, V and W
      */
-    private void defineCameraCoordinates(){
+    private void defineCameraCoordinates() {
         // Create normalized vectors from previous data
         vectorU = Vector3D.scale(-1.0, distance);
         vectorU.normalize();
@@ -127,7 +127,7 @@ public class Camera {
      * @param   centerX The distance from the boorder of the screen to the center in the X-dimension 
      * @param   centerY The distance from the boorder of the screen to the center in the Y-dimension 
      */
-    private void defineScreen(double centerX, double centerY){
+    private void defineScreen(double centerX, double centerY) {
         
         // Calculate length (left and right) and height (bottom and top)
         l = - centerX;
@@ -142,7 +142,7 @@ public class Camera {
      * @param   centerX The distance from the left boorder of the screen to the center in the X-dimension
      * @param   centerY The distance from the bottom boorder of the screen to the center in the X-dimension
      */
-    public void changePerspective(int centerX, int centerY){
+    public void changePerspective(int centerX, int centerY) {
         // redefines the the perspective by changing the center of the screen
         defineScreen(centerX, centerY);
     }

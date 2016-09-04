@@ -33,7 +33,7 @@ public class Ray {
      * @param eye   origin of the ray
      * @param dir   direction of the ray
      */
-    public Ray(Vector3D eye, Vector3D dir){
+    public Ray(Vector3D eye, Vector3D dir) {
         origin = new Vector3D(eye);
         direction = dir;
     }
@@ -43,7 +43,7 @@ public class Ray {
      * 
      * @return origin of the ray
      */
-    public Vector3D getOrigin(){
+    public Vector3D getOrigin() {
         return origin;
     }
     
@@ -52,7 +52,7 @@ public class Ray {
      * 
      * @return direction of ray
      */
-    public Vector3D getDirection(){
+    public Vector3D getDirection() {
         return direction;
     }
 }

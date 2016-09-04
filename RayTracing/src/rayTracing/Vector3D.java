@@ -262,7 +262,7 @@ public class Vector3D {
     /**
      * Print vector to command line (System.out.println(Vector))
      */
-    public void printVector3D(){
+    public void printVector3D() {
         System.out.println(("["+x+", "+y+", "+z+"]"));
     }
 }

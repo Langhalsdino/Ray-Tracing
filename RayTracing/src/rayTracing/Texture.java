@@ -39,7 +39,7 @@ public class Texture {
      * @param   rotationDirection   Represents the direction of the X-Axis of the image 
      * @param   picture             A image as texture 
      */
-    public Texture(double magnification, Vector3D rotationDirection, BufferedImage picture){
+    public Texture(double magnification, Vector3D rotationDirection, BufferedImage picture) {
         //Define private vars
         isFunction = false;
         image = picture;
@@ -54,7 +54,7 @@ public class Texture {
      * @param rotationDirection Represents the direction of the X-Axis of the function 
      * @param function          Function used as a texture       
      */
-    public Texture(double magnification, Vector3D rotationDirection, ColorFunction function){
+    public Texture(double magnification, Vector3D rotationDirection, ColorFunction function) {
         //Define private vars
         isFunction = true;
         scale = magnification;
@@ -70,7 +70,7 @@ public class Texture {
      * @param sphere    Sphere that is painted with the texture
      * @return          Color of the point on the sphere
      */
-    public int[] colorOfPoint(Vector3D point, Sphere sphere){
+    public int[] colorOfPoint(Vector3D point, Sphere sphere) {
         int[] color = {255,255,255};
         // Currently not implemented return black
         return color;
@@ -83,7 +83,7 @@ public class Texture {
      * @param plane Plane that is painted with the texture
      * @return      Color of the point on the plane
      */
-    public int[] colorOfPoint(Vector3D point, Plane plane){
+    public int[] colorOfPoint(Vector3D point, Plane plane) {
         int[] color = {255,255,255};
         
         // get coordinates of the point on surface (X,Y)
@@ -92,21 +92,21 @@ public class Texture {
         int b = (int) (mappedPoint[1]/scale);
         
         // If the texture is a function calculate the color and return it
-        if(isFunction){
+        if (isFunction) {
             color = colorFunction.getRGB(a,b);
         }
         // Otherwise look into the image and return the color
-        else{
+        else {
             // get a point on the image by using the modulus (image is looped)
             int x = (int) Math.abs(a)%image.getWidth();
             int y = (int) Math.abs(b)%image.getHeight();
             
             // Some how the modulus did not work :(( sad
-            if(x >= image.getWidth() || x < 0){
+            if (x >= image.getWidth() || x < 0) {
                 x = 0;
                  System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!----------------error----------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n');
             }
-            if(y >= image.getHeight() || y < 0){
+            if (y >= image.getHeight() || y < 0) {
                 y = 0;
                  System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!----------------error----------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n'+ '\n');
             }
@@ -129,7 +129,7 @@ public class Texture {
      * @param   plane   The plane painted with the texture
      * @return  the mapped point as {x,y} coordinates
      */
-    private double[] mappPointOnSurface(Vector3D point, Plane plane){
+    private double[] mappPointOnSurface(Vector3D point, Plane plane) {
         Vector3D distanceToZero = Vector3D.subtract(point, plane.getZeroPoint());
         
         Vector3D vectorU;
@@ -169,7 +169,7 @@ public class Texture {
      * @param sphere    Sphere painted with the texture
      * @return          Return the {x,y} coordinates of the point
      */
-    private double[] mappPointOnSurface(Vector3D point, Sphere sphere){
+    private double[] mappPointOnSurface(Vector3D point, Sphere sphere) {
         double[] mappedPoint = {0.0,0.0};
         
         // Currently not implemented!!!
